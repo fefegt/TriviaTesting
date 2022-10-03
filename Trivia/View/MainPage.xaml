@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Trivia.ViewModel"
+             xmlns:model="clr-namespace:Trivia.Model"
+             x:Name="contentPage"
+             x:DataType="viewmodel:TriviaViewModel"
+             Title="{Binding Title}"
+             Background="{StaticResource Key=Grey}"
+             x:Class="Trivia.MainPage">
+
+    <Grid ColumnDefinitions="*,*" RowDefinitions="40,70,40,*,100" ColumnSpacing="5" BackgroundColor="White">
+                    <Label Text="ACIERTOS" HorizontalOptions="Center" Background="Green"></Label>
+                    <Label Text="TIEMPO RESTANTE" Grid.Column="1" HorizontalTextAlignment="Center" HorizontalOptions="Center" Background="DarkRed"></Label>
+                    <Label Text="0" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center"></Label>
+                    <Label x:Name="lblRemainingTime" Text="{Binding RemainingTime}"  Grid.Row="1" Grid.Column="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center"></Label>
+
+        <Label Text="ELIJA UNA OPCION" Grid.Row="2" Grid.ColumnSpan="4" BackgroundColor="#C4A484" 
+                           WidthRequest="{Binding BindingContext.WidthRequest, Source={x:Reference contentPage}}"
+                           FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Padding="4"></Label>
+
+                    <CollectionView  Background="Gray" Grid.ColumnSpan="2" Grid.Row="3" VerticalOptions="CenterAndExpand" ItemsSource="{Binding Movies}" SelectionMode="None" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Movie">
+                                <Frame Margin="7" Padding="15" HorizontalOptions="FillAndExpand" BorderColor="{StaticResource Key=Primary}">
+                                    <Frame.GestureRecognizers>
+                                         
+                                        <TapGestureRecognizer CommandParameter="{Binding .}" NumberOfTapsRequired="1"
+                                                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TriviaViewModel}}, Path=PickAnswerCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    
+                                    <Grid ColumnDefinitions="100,*" >
+
+                                        <Label Text="{Binding Id}" Margin="5" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Start"></Label>
+
+                                        <Label Text="{Binding Title}" Grid.Column="4" Margin="8" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="StartAndExpand" BackgroundColor="Black" TextColor="White"></Label>
+                                        
+                                    </Grid>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+        <Button Text="Start Game" FontAttributes="Bold" x:Name="StartGameButton" Grid.Row="4" Grid.ColumnSpan="2" Margin="8" BackgroundColor="#C4A484" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}"></Button>
+                            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                                               IsRunning="{Binding IsBusy}"
+                                               Grid.ColumnSpan="2"
+                                               Grid.RowSpan="5"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="CenterAndExpand"
+                                               />
+                </Grid>
+</ContentPage>
