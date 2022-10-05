@@ -7,10 +7,10 @@
              x:DataType="viewmodel:TriviaViewModel"
              xmlns:local="clr-namespace:Trivia.Services.Converters"
              Title="{Binding Title}"
-             Background="{StaticResource Key=Black}"
+             Background="{StaticResource Key=Gray100}"
              x:Class="Trivia.MainPage">
     <ContentPage.Resources>
-        <local:SelectedMovieStyleConverter x:Key="colorMovieConverter" />
+        <local:StateMovieStyleConverter x:Key="colorMovieConverter" />
     </ContentPage.Resources>
 
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="40,70,40,50,*,100" ColumnSpacing="5" BackgroundColor="White">
@@ -74,7 +74,7 @@
         <CollectionView  Grid.ColumnSpan="3" Grid.Row="4" VerticalOptions="CenterAndExpand" ItemsSource="{Binding Movies}" SelectionMode="None" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Movie">
-                                <Frame Margin="25" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding IsSelected, Converter={StaticResource colorMovieConverter}}" BorderColor="{StaticResource Key=Primary}">
+                                <Frame Margin="25" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding State, Converter={StaticResource colorMovieConverter}}" BorderColor="{StaticResource Key=Primary}">
                                     <Frame.GestureRecognizers>
                                          
                                         <TapGestureRecognizer CommandParameter="{Binding .}" NumberOfTapsRequired="1"

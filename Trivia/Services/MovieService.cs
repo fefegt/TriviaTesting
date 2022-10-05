@@ -31,7 +31,7 @@ namespace Trivia.Services
                 }
                 
             }
-            await Task.Delay(500);
+            await Task.Delay(300);
             return tempMovies;
         }
 

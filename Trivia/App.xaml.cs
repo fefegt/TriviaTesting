@@ -1,4 +1,6 @@
-﻿namespace Trivia;
+﻿using Trivia.Services;
+
+namespace Trivia;
 
 public partial class App : Application
 {
@@ -7,5 +9,6 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
+		AIService service = new AIService();
 	}
 }

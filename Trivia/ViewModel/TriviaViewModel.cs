@@ -41,8 +41,11 @@ namespace Trivia.ViewModel
         [RelayCommand]
         private async Task PickAnswer(Movie movie)
         {
-            PickedMovie = movie;
-            movie.IsSelected = true;
+            if (PickedMovie is null)
+            {
+                PickedMovie = movie;
+                movie.State = MovieState.Selected;
+            }
             //_ = Shell.Current.DisplayAlert("test", "test", "ok");
         }
 
@@ -54,6 +57,8 @@ namespace Trivia.ViewModel
                 IsBusy = true;
                 //StartGame();
                 var movies = await movieService.GetRandomMovies(_qtyMovies);
+
+                
 
                 Movies.Clear();
                 
@@ -79,7 +84,8 @@ namespace Trivia.ViewModel
         private async Task StartGame()
         {
             _isRunning = !_isRunning;
-            GetMovies();
+            PickedMovie = null;
+            await GetMovies();
             remainingTime = _roundTime;
 
             while(_isRunning)// && remainingTime !=0)
@@ -91,25 +97,36 @@ namespace Trivia.ViewModel
                 if(RemainingTime == 0) 
                 {
                     _isRunning = false;
+
+                    Movies.Single(o => o == WinnerMovie).State = MovieState.Winner;
+
                     if (WinnerMovie == PickedMovie)
                     {
+                        
                         await Shell.Current.DisplayAlert("Respuesta Correcta", "Preparese para la siguiente ronda", "Ok");
                     }
                     else if(WinnerMovie != PickedMovie && PickedMovie is not null)
                     {
+                        Movies.Single(o => o == PickedMovie).State = MovieState.SelectedLoss;
                         await Shell.Current.DisplayAlert("Respuesta Incorrecta", "Buena suerte en la siguiente ronda", "Ok");
                     }
                     else
                     {
                         await Shell.Current.DisplayAlert("Tiempo agotado", "Elija la respuesta mas rapido la proxima vez", "Ok");
                     }
-                    
                 }
-                
             }
-            StartGame();
+
+            ResetRound();
+            await StartGame();
 
             //remainingTime = 10;
+        }
+
+        private void ResetRound()
+        {
+            foreach (Movie movie in Movies)
+                movie.RestoreState();
         }
     }
 }

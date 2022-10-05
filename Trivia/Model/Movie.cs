@@ -14,10 +14,24 @@ namespace Trivia.Model
 
         public string Emoji{ get; set; }
 
-        private bool isSelected = false;
-        public bool IsSelected { get => isSelected; set => SetProperty(ref isSelected, value); }
+        public MovieState state = MovieState.None;
+        public MovieState State { get => state; set => SetProperty(ref state, value); }
+
+        public void RestoreState() => State = MovieState.None;
+        //private bool isSelected = false;
+        //public bool IsSelected { get => isSelected; set => SetProperty(ref isSelected, value); }
+
+        //private bool isWinner = false;
+        //public bool IsWinner { get => isSelected; set => SetProperty(ref isWinner, value); }
     }
 
+    public enum MovieState
+    {
+        None = 0,
+        Selected = 1,
+        Winner = 2,
+        SelectedLoss = 3
+    }
     //public class Cast
     //{
     //    public int id { get; set; }
