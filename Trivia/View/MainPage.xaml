@@ -25,7 +25,7 @@
             VerticalOptions="Center"
                    HorizontalOptions="Center"
                    BackgroundColor="Green">
-            <Label Text="0" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"></Label>
+            <Label Text="{Binding CurrentPlayer.Points}" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"></Label>
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="0,0,10,10" />
             </Border.StrokeShape>
@@ -60,7 +60,7 @@
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    BackgroundColor="Red">
-            <Label Text="3" Grid.Column="3" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"></Label>
+            <Label Text="{Binding CurrentPlayer.Lifesleft}" Grid.Column="3" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"></Label>
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="0,0,10,10" />
             </Border.StrokeShape>
