@@ -46,7 +46,7 @@ namespace Trivia.Services
             Movies.Add(new Movie { Id = 7, Title = "Pulp Fiction" , Emoji = Emoji.Man + Emoji.Man + Emoji.Hamburger + Emoji.Video_Camera + Emoji.File_Folder});
             Movies.Add(new Movie { Id = 8, Title = "The Good, the Bad and the Ugly" , Emoji = Emoji.Man + Emoji.Vs + Emoji.Man + Emoji.Vs + Emoji.Man});
             Movies.Add(new Movie { Id = 9, Title = "Forrest Gump" , Emoji = Emoji.Runner + Emoji.Athletic_Shoe + Emoji.Man + Emoji.Wheelchair + Emoji.Sailboat + Emoji.Fried_Shrimp});
-            Movies.Add(new Movie { Id = 10, Title = "Fight Club" , Emoji = Emoji.Man + Emoji.Vs + Emoji.Man + Emoji.Secret + Emoji.Clubs });
+            Movies.Add(new Movie { Id = 10, Title = "Fight Club" , Emoji = Emoji.Man + Emoji.Vs + Emoji.Man + Emoji.Hushed + Emoji.Clubs });
         }
     }
 }

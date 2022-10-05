@@ -18,8 +18,11 @@ namespace Trivia.ViewModel
         private int _qtyMovies = 4;
         private TimeOnly _time = new();
         private bool _isRunning = false;
-        public Movie PickedMovie;
+        private Movie PickedMovie;
         private int _roundTime = 10;
+
+        [ObservableProperty]
+        Player currentPlayer;
 
         public ObservableCollection<Movie> Movies { get; } =  new();
 
@@ -29,12 +32,13 @@ namespace Trivia.ViewModel
         [ObservableProperty]
         private int remainingTime = 10;
 
-        MovieService movieService; 
+        MovieService movieService;
 
         public TriviaViewModel(MovieService movieService)
         {
             Title = "Trivia Game";
             this.movieService = movieService;
+            currentPlayer = new Player(5,1);
             StartGame();
         }
 
@@ -94,14 +98,17 @@ namespace Trivia.ViewModel
                     if (WinnerMovie == PickedMovie)
                     {
                         await Shell.Current.DisplayAlert("Respuesta Correcta", "Preparese para la siguiente ronda", "Ok");
+                        currentPlayer.Points++;
                     }
                     else if(WinnerMovie != PickedMovie && PickedMovie is not null)
                     {
                         await Shell.Current.DisplayAlert("Respuesta Incorrecta", "Buena suerte en la siguiente ronda", "Ok");
+                        currentPlayer.Lifesleft--;
                     }
                     else
                     {
                         await Shell.Current.DisplayAlert("Tiempo agotado", "Elija la respuesta mas rapido la proxima vez", "Ok");
+                        currentPlayer.Lifesleft--;
                     }
                     
                 }

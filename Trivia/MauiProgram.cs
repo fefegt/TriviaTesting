@@ -1,6 +1,7 @@
 ﻿using Trivia.Services;
 using Trivia.ViewModel;
 
+
 namespace Trivia;
 
 public static class MauiProgram
@@ -24,6 +25,6 @@ public static class MauiProgram
 
 
 
-		return builder.Build();
+        return builder.Build();
 	}
 }
