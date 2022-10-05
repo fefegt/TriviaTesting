@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace Trivia.Model
 {
-    public class Movie
+    public class Movie : ObservableObject
     {
         public int Id { get; set; }
         public string Title { get; set; }
 
         public string Emoji{ get; set; }
-        public Style Style { get; set; } = new Style(typeof(Frame)) { BaseResourceKey= "movieColor" };
+
+        private bool isSelected = false;
+        public bool IsSelected { get => isSelected; set => SetProperty(ref isSelected, value); }
     }
 
     //public class Cast

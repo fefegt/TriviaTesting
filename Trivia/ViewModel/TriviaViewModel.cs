@@ -42,7 +42,7 @@ namespace Trivia.ViewModel
         private async Task PickAnswer(Movie movie)
         {
             PickedMovie = movie;
-            movie.Style = new Style(typeof(Frame)) { BaseResourceKey = "selectedMovieColor" };
+            movie.IsSelected = true;
             //_ = Shell.Current.DisplayAlert("test", "test", "ok");
         }
 
