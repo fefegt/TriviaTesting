@@ -18,9 +18,12 @@ namespace Trivia.ViewModel
         private int _qtyMovies = 4;
         private TimeOnly _time = new();
         private bool _isRunning = false;
+        public Movie PickedMovie;
 
         public ObservableCollection<Movie> Movies { get; } =  new();
-        public Movie WinnerMovie = new();
+
+        [ObservableProperty]
+        public Movie winnerMovie = new();
 
         [ObservableProperty]
         private int remainingTime = 10;
@@ -79,7 +82,7 @@ namespace Trivia.ViewModel
 
                 if(RemainingTime == 0) 
                 {
-                    Shell.Current.DisplayAlert("ROUND HAS ENDED!!", "You ran out of time", "OK");
+                    if()
                 }
             }
         }
