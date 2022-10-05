@@ -19,6 +19,7 @@ namespace Trivia.ViewModel
         private TimeOnly _time = new();
         private bool _isRunning = false;
         public Movie PickedMovie;
+        private int _roundTime = 10;
 
         public ObservableCollection<Movie> Movies { get; } =  new();
 
@@ -34,6 +35,7 @@ namespace Trivia.ViewModel
         {
             Title = "Trivia Game";
             this.movieService = movieService;
+            StartGame();
         }
 
         [RelayCommand]
@@ -50,7 +52,7 @@ namespace Trivia.ViewModel
             try
             {
                 IsBusy = true;
-                StartGame();
+                //StartGame();
                 var movies = await movieService.GetRandomMovies(_qtyMovies);
 
                 Movies.Clear();
@@ -77,7 +79,10 @@ namespace Trivia.ViewModel
         private async Task StartGame()
         {
             _isRunning = !_isRunning;
-            while(_isRunning && remainingTime !=0)
+            GetMovies();
+            remainingTime = _roundTime;
+
+            while(_isRunning)// && remainingTime !=0)
             {
                 _time.Add(TimeSpan.FromSeconds(1));
                 RemainingTime -= 1;
@@ -85,7 +90,8 @@ namespace Trivia.ViewModel
 
                 if(RemainingTime == 0) 
                 {
-                    if(WinnerMovie == PickedMovie)
+                    _isRunning = false;
+                    if (WinnerMovie == PickedMovie)
                     {
                         await Shell.Current.DisplayAlert("Respuesta Correcta", "Preparese para la siguiente ronda", "Ok");
                     }
@@ -97,10 +103,13 @@ namespace Trivia.ViewModel
                     {
                         await Shell.Current.DisplayAlert("Tiempo agotado", "Elija la respuesta mas rapido la proxima vez", "Ok");
                     }
-
+                    
                 }
                 
             }
+            StartGame();
+
+            //remainingTime = 10;
         }
     }
 }

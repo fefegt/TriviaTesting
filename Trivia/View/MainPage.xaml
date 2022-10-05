@@ -65,7 +65,7 @@
         <Label Text="ELIJA UNA OPCION" Grid.Row="2" Grid.ColumnSpan="4" BackgroundColor="#C4A484" TextColor="White" 
             FontSize="Title" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" Padding="0"></Label>
 
-        <Label  Text="{Binding WinnerMovie.Emoji}" FontSize="Small" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1"></Label>
+        <Label  Text="{Binding WinnerMovie.Emoji}" FontSize="Medium" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1"></Label>
 
         <CollectionView  Background="Gray" Grid.ColumnSpan="3" Grid.Row="4" VerticalOptions="CenterAndExpand" ItemsSource="{Binding Movies}" SelectionMode="None" >
                         <CollectionView.ItemTemplate>
@@ -90,7 +90,7 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
-        <Button Text="Start Game" FontAttributes="Bold" x:Name="StartGameButton" Grid.Row="5" Grid.ColumnSpan="3" BackgroundColor="#C4A484" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}" HeightRequest="105" WidthRequest="500" VerticalOptions="EndAndExpand"></Button>
+        <Button Text="Start Game" FontAttributes="Bold" IsVisible="false" x:Name="StartGameButton" Grid.Row="5" Grid.ColumnSpan="3" BackgroundColor="#C4A484" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}" HeightRequest="105" WidthRequest="500" VerticalOptions="EndAndExpand"></Button>
                             <ActivityIndicator IsVisible="{Binding IsBusy}" 
                                                IsRunning="{Binding IsBusy}"
                                                Grid.ColumnSpan="2"

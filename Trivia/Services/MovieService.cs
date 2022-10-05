@@ -40,7 +40,7 @@ namespace Trivia.Services
             Movies.Add(new Movie { Id = 1, Title = "The GodFather" , Emoji = Emoji.Older_Man + Emoji.Gun + Emoji.Wine_Glass});
             Movies.Add(new Movie { Id = 2, Title = "The Dark Knight" , Emoji = Emoji.Man + Emoji.Fist + Emoji.Night_With_Stars});
             Movies.Add(new Movie { Id = 3, Title = "The Godfather Part II" , Emoji = Emoji.Gun + Emoji.Knife + Emoji.Horse + Emoji.Older_Man + Emoji.Two});
-            Movies.Add(new Movie { Id = 4, Title = "12 Angry Men" , Emoji = Emoji.One + Emoji.Angry + Emoji.Mens});
+            Movies.Add(new Movie { Id = 4, Title = "12 Angry Men" , Emoji = Emoji.One + Emoji.Two + Emoji.Angry + Emoji.Mens});
             Movies.Add(new Movie { Id = 5, Title = "Schindler's List" , Emoji = Emoji.Girl + Emoji.Gun});
             Movies.Add(new Movie { Id = 6, Title = "The Lord of the Rings: The Return of the King" , Emoji = Emoji.Older_Man + Emoji.Boy + Emoji.Ring + Emoji.Volcano});
             Movies.Add(new Movie { Id = 7, Title = "Pulp Fiction" , Emoji = Emoji.Man + Emoji.Man + Emoji.Hamburger + Emoji.Video_Camera + Emoji.File_Folder});
