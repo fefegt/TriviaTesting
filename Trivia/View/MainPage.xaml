@@ -70,7 +70,7 @@
         <CollectionView  Background="Gray" Grid.ColumnSpan="3" Grid.Row="4" VerticalOptions="CenterAndExpand" ItemsSource="{Binding Movies}" SelectionMode="None" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Movie">
-                                <Frame Margin="25" Padding="10" HorizontalOptions="FillAndExpand" BorderColor="{StaticResource Key=Primary}">
+                                <Frame Margin="25" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding Style}" BorderColor="{StaticResource Key=Primary}">
                                     <Frame.GestureRecognizers>
                                          
                                         <TapGestureRecognizer CommandParameter="{Binding .}" NumberOfTapsRequired="1"
@@ -98,5 +98,5 @@
                                                HorizontalOptions="FillAndExpand"
                                                VerticalOptions="CenterAndExpand"
                                                />
-                </Grid>
+    </Grid>
 </ContentPage>

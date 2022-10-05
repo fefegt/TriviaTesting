@@ -12,6 +12,7 @@ namespace Trivia.Model
         public string Title { get; set; }
 
         public string Emoji{ get; set; }
+        public Style Style { get; set; } = new Style(typeof(Frame)) { BaseResourceKey= "movieColor" };
     }
 
     //public class Cast

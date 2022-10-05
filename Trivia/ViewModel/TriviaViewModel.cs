@@ -39,6 +39,8 @@ namespace Trivia.ViewModel
         [RelayCommand]
         private async Task PickAnswer(Movie movie)
         {
+            PickedMovie = movie;
+            movie.Style = new Style(typeof(Frame)) { BaseResourceKey = "selectedMovieColor" };
             //_ = Shell.Current.DisplayAlert("test", "test", "ok");
         }
 
@@ -59,6 +61,7 @@ namespace Trivia.ViewModel
                     Movies.Add(movie);
                 }
                 WinnerMovie = Movies[Random.Shared.Next(0, _qtyMovies)];
+                Console.WriteLine($"Winner movie: {WinnerMovie.Title}");
             }
             catch(Exception ex)
             {
@@ -82,8 +85,21 @@ namespace Trivia.ViewModel
 
                 if(RemainingTime == 0) 
                 {
-                    if()
+                    if(WinnerMovie == PickedMovie)
+                    {
+                        await Shell.Current.DisplayAlert("Respuesta Correcta", "Preparese para la siguiente ronda", "Ok");
+                    }
+                    else if(WinnerMovie != PickedMovie && PickedMovie is not null)
+                    {
+                        await Shell.Current.DisplayAlert("Respuesta Incorrecta", "Buena suerte en la siguiente ronda", "Ok");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Tiempo agotado", "Elija la respuesta mas rapido la proxima vez", "Ok");
+                    }
+
                 }
+                
             }
         }
     }
