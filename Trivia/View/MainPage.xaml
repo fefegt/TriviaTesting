@@ -16,55 +16,15 @@
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="40,70,40,50,*,100" ColumnSpacing="5" BackgroundColor="White">
         <Label Text="ACIERTOS" HorizontalOptions="Center"></Label>
 
-        <Border    Grid.Column="0"
-                   Grid.Row="1"
-                   HeightRequest="75"
-                   WidthRequest="75"
-                   Padding="15"
-                   StrokeThickness="3"
-            VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   BackgroundColor="Green">
-            <Label Text="{Binding CurrentPlayer.Points}" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"></Label>
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="0,0,10,10" />
-            </Border.StrokeShape>
-        </Border>
+        <Label Text="{Binding CurrentPlayer.Points}" Grid.Row="1" FontSize="Title" FontAttributes="None" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Points}"></Label>
         
         <Label Text="TIEMPO" Grid.Column="1" HorizontalTextAlignment="Center" HorizontalOptions="Center" Background="White" BackgroundColor="Blue"></Label>
 
-        <Border    Grid.Column="1"
-                   Grid.Row="1"
-                   HeightRequest="75"
-                   WidthRequest="75"
-                   Padding="15"
-                   StrokeThickness="3"
-            VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   BackgroundColor="DarkBlue">
-            <Label x:Name="lblRemainingTime" Text="{Binding RemainingTime}"  Grid.Row="1" Grid.Column="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"></Label>
+        <Label x:Name="lblRemainingTime" Text="{Binding RemainingTime}"  Grid.Row="1" Grid.Column="1" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Time}"></Label>
             
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="0,0,10,10" />
-            </Border.StrokeShape>
-        </Border>
-
         <Label Text="VIDAS" Grid.Column="3" HorizontalOptions="Center"></Label>
 
-        <Border    Grid.Column="3"
-                   Grid.Row="1"
-                   HeightRequest="75"
-                   WidthRequest="75"
-                   Padding="15"
-                   StrokeThickness="3"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   BackgroundColor="Red">
-            <Label Text="{Binding CurrentPlayer.Lifesleft}" Grid.Column="3" Grid.Row="1" FontSize="Title" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"></Label>
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="0,0,10,10" />
-            </Border.StrokeShape>
-        </Border>
+        <Label Text="{Binding CurrentPlayer.Lifesleft}" Grid.Column="3" Grid.Row="1" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Lives}"></Label>
 
         <Label Text="ELIJA UNA OPCION" Grid.Row="2" Grid.ColumnSpan="4" BackgroundColor="#C4A484" TextColor="White" 
             FontSize="Title" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" Padding="0"></Label>

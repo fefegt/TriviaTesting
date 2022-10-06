@@ -49,6 +49,7 @@ namespace Trivia.ViewModel
             {
                 PickedMovie = movie;
                 movie.State = MovieState.Selected;
+                VibrateStartButton_Clicked();
             }
             //_ = Shell.Current.DisplayAlert("test", "test", "ok");
         }
@@ -135,5 +136,14 @@ namespace Trivia.ViewModel
             foreach (Movie movie in Movies)
                 movie.RestoreState();
         }
+
+        private void VibrateStartButton_Clicked()
+        {
+            int secondsToVibrate = 100;
+            TimeSpan vibrationLength = TimeSpan.FromMilliseconds(secondsToVibrate);
+
+            Vibration.Default.Vibrate(vibrationLength);
+        }
+
     }
 }
