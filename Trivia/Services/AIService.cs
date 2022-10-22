@@ -15,10 +15,17 @@ namespace Trivia.Services
         public AIService()
         {
             Debug.WriteLine("test");
-            api = new OpenAIAPI("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");
-            var result = api.Completions.CreateCompletionAsync("Create a list of first names");
-            Debug.WriteLine(result);
+            api = new OpenAIAPI("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");
             
+            
+        }
+
+        public async Task<string> TestApi()
+        {
+            var result = api.Completions.CreateCompletionAsync(new CompletionRequest("Convert movie titles into emoji.\n\nBack to the Future:"));
+            //result.WaitAsync();
+            Debug.WriteLine(result);
+            return result.ToString();
         }
     }
 }

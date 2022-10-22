@@ -61,6 +61,9 @@ namespace Trivia.ViewModel
         [RelayCommand]
         private async Task GetMovies()
         {
+            AIService service = new AIService();
+            var result = await service.TestApi();
+            Shell.Current.DisplayAlert("t", result, "ok");
             try
             {
                 IsBusy = true;
