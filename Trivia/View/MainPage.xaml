@@ -20,14 +20,20 @@
         <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
     </Shell.BackButtonBehavior>
 
-    <Grid ColumnDefinitions="*,*,*" RowDefinitions="40,70,40,100,*,100" ColumnSpacing="5" BackgroundColor="White">
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="100,70,40,100,*,100" ColumnSpacing="5" BackgroundColor="White">
         
         <Label Text="ACIERTOS" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Black}}"></Label>
         <Label Text="{Binding CurrentPlayer.Points}" Grid.Row="1" FontSize="Title" FontAttributes="None" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Points}"></Label>
 
-        <Label Text="TIEMPO" Grid.Column="1" HorizontalTextAlignment="Center" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Black}}"></Label>
-        <Label x:Name="lblRemainingTime" Text="{Binding RemainingTime}"  Grid.Row="1" Grid.Column="1" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Time}"></Label>
-
+        <GraphicsView x:Name="ProgressView" Drawable="{Binding Arc}"
+                          BackgroundColor="{StaticResource Primary}"
+                          HeightRequest="90"
+                          WidthRequest="90" 
+                          Grid.Column="1"
+                          />
+        <Frame Grid.Column="1" Grid.Row="0" HeightRequest="90" WidthRequest="90" CornerRadius="45" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{StaticResource Primary}">
+            <Label x:Name="lblRemainingTime" Text="{Binding RemainingTime}" FontSize="22" FontFamily="fa-regular" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Time}"></Label>
+        </Frame>
         <Label Text="VIDAS" Grid.Column="3" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Black}}"></Label>
         <Label Text="{Binding CurrentPlayer.Lifesleft}" Grid.Column="3" Grid.Row="1" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Lives}"></Label>
 

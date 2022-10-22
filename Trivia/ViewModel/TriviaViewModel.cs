@@ -11,6 +11,8 @@ using Debug = System.Diagnostics.Debug;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
+using Microsoft.Maui;
+using System.Threading;
 
 namespace Trivia.ViewModel
 {
@@ -20,7 +22,7 @@ namespace Trivia.ViewModel
         private TimeOnly _time = new();
         private bool _isRunning = false;
         private Movie PickedMovie;
-        private int _roundTime = 10;
+        private int _roundTime = 10;//= duration
 
         [ObservableProperty]
         Player currentPlayer;
@@ -105,6 +107,8 @@ namespace Trivia.ViewModel
                 _time.Add(TimeSpan.FromSeconds(1));
                 RemainingTime -= 1;
                 await Task.Delay(TimeSpan.FromSeconds(1));
+
+
 
                 if(RemainingTime == 0) 
                 {
