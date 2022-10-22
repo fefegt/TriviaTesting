@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trivia.GameEndedPage"
+             xmlns:viewmodel="clr-namespace:Trivia.ViewModel"
+             Title=""
+             >
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+
+    <Grid ColumnDefinitions="*, *" RowDefinitions="40, 300, 150, 40">
+
+        <BoxView Grid.Row="0" HorizontalOptions="Start" Margin="10" CornerRadius="20" WidthRequest="150" HeightRequest="45"/>
+        <Label Text="vidas" HorizontalOptions="Start" TextColor="White" Margin="45, 0"/>
+
+        <Label Text="YOUR ANSWER WAS" Grid.ColumnSpan="2" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start"/>
+
+        <CollectionView Grid.ColumnSpan="2" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ItemsSource="{Binding WinnerMovie}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                
+                <DataTemplate x:DataType="viewmodel:TriviaViewModel">
+                    <Frame Margin="25" Padding="10" HorizontalOptions="CenterAndExpand" BackgroundColor="Grey" BorderColor="{StaticResource Key=Primary}">
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="*,*"  BackgroundColor="Grey">
+                            <Label Text="--selected movie--" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="--right answer--" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="Did you like the round? Some feedback would be very helpful!" FontAttributes="Bold" Grid.ColumnSpan="2" FontSize="12" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <ImageButton Source="like.png" BackgroundColor="Orange" Grid.Row="2" WidthRequest="190" HeightRequest="40" CornerRadius="20" VerticalOptions="End"/>
+        <ImageButton Source="dislike.png" BackgroundColor="Orange" Grid.Column="1" Grid.Row="2" WidthRequest="190" HeightRequest="40" CornerRadius="20" VerticalOptions="End"/>
+
+        <Button Text="Report error" TextColor="Black" FontAttributes="Bold" FontSize="Small" BackgroundColor="Transparent" Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="Start" HorizontalOptions="Center"/>
+
+    </Grid>
+
+</ContentPage>

@@ -394,4 +394,41 @@
     
     
 
+    <Style TargetType="Label" x:Key="Lives">
+        <Setter Property="BackgroundColor" Value="Red"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="Padding" Value="15"/>
+        <Setter Property="HeightRequest" Value="75"/>
+        <Setter Property="WidthRequest" Value="75"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.Column" Value="3"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="Points">
+        <Setter Property="BackgroundColor" Value="Green"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HeightRequest" Value="75"/>
+        <Setter Property="WidthRequest" Value="75"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.Column" Value="0"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="Time">
+        <Setter Property="BackgroundColor" Value="DarkBlue"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="Padding" Value="15"/>
+        <Setter Property="HeightRequest" Value="75"/>
+        <Setter Property="WidthRequest" Value="75"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.Column" Value="1"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="DarkThemeLetters">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark=White}"/>
+    </Style>
+
 </ResourceDictionary>

@@ -10,6 +10,7 @@ using Trivia.Services;
 using Debug = System.Diagnostics.Debug;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Windows.Input;
 
 namespace Trivia.ViewModel
 {
@@ -49,8 +50,12 @@ namespace Trivia.ViewModel
             {
                 PickedMovie = movie;
                 movie.State = MovieState.Selected;
+                if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+                {
+                    Vibrate();
+                }
+                
             }
-            //_ = Shell.Current.DisplayAlert("test", "test", "ok");
         }
 
         [RelayCommand]
@@ -103,25 +108,22 @@ namespace Trivia.ViewModel
 
                 if(RemainingTime == 0) 
                 {
+                    await Shell.Current.GoToAsync(nameof(GameEndedPage));
                     _isRunning = false;
 
                     Movies.Single(o => o == WinnerMovie).State = MovieState.Winner;
 
                     if (WinnerMovie == PickedMovie)
-                    {
-                        
-                        await Shell.Current.DisplayAlert("Respuesta Correcta", "Preparese para la siguiente ronda", "Ok");
+                    {  
                         currentPlayer.Points++;
                     }
                     else if(WinnerMovie != PickedMovie && PickedMovie is not null)
                     {
                         Movies.Single(o => o == PickedMovie).State = MovieState.SelectedLoss;
-                        await Shell.Current.DisplayAlert("Respuesta Incorrecta", "Buena suerte en la siguiente ronda", "Ok");
                         currentPlayer.Lifesleft--;
                     }
                     else
                     {
-                        await Shell.Current.DisplayAlert("Tiempo agotado", "Elija la respuesta mas rapido la proxima vez", "Ok");
                         currentPlayer.Lifesleft--;
                     }
                 }
@@ -130,7 +132,7 @@ namespace Trivia.ViewModel
             ResetRound();
             await StartGame();
 
-            //remainingTime = 10;
+            //remainingTime -=10;
         }
 
         private void ResetRound()
@@ -138,5 +140,14 @@ namespace Trivia.ViewModel
             foreach (Movie movie in Movies)
                 movie.RestoreState();
         }
+
+        private static void Vibrate()
+        {
+            int secondsToVibrate = 100;
+            TimeSpan vibrationLength = TimeSpan.FromMilliseconds(secondsToVibrate);
+
+            Vibration.Default.Vibrate(vibrationLength);
+        }
+
     }
 }

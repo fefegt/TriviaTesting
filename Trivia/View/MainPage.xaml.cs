@@ -1,10 +1,10 @@
-﻿using Trivia.ViewModel;
+﻿using CommunityToolkit.Maui.Views;
+using Trivia.ViewModel;
 
 namespace Trivia;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
 
 	public MainPage(TriviaViewModel triviaViewModel)
 	{
@@ -12,16 +12,10 @@ public partial class MainPage : ContentPage
 		BindingContext = triviaViewModel;
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		//count++;
+    protected override bool OnBackButtonPressed()
+    {
+		return false;
+    }
 
-		//if (count == 1)
-		//	CounterBtn.Text = $"Clicked {count} time";
-		//else
-		//	CounterBtn.Text = $"Clicked {count} times";
-
-		//SemanticScreenReader.Announce(CounterBtn.Text);
-	}
 }
 

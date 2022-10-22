@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Trivia.ViewModel
 {
-    public partial class BaseViewModel : ObservableObject
+    public partial class BaseViewModel : ObservableObject 
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
@@ -18,5 +19,6 @@ namespace Trivia.ViewModel
         string title;
         
         public bool IsNotBusy => !IsBusy;
+
     }
 }
