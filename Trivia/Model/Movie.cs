@@ -14,7 +14,7 @@ namespace Trivia.Model
 
         public string Emoji{ get; set; }
 
-        public Image image { get; set; }
+        public string image { get; set; }
 
         public MovieState state = MovieState.None;
         public MovieState State { get => state; set => SetProperty(ref state, value); }

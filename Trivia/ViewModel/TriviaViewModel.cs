@@ -105,7 +105,7 @@ namespace Trivia.ViewModel
 
                 if(RemainingTime == 0) 
                 {
-                    await Shell.Current.GoToAsync(nameof(GameEndedPage));
+                    //await Shell.Current.GoToAsync(nameof(GameEndedPage));
                     _isRunning = false;
 
                     Movies.Single(o => o == WinnerMovie).State = MovieState.Winner;
@@ -129,7 +129,7 @@ namespace Trivia.ViewModel
             ResetRound();
             await StartGame();
 
-            //remainingTime -=10;
+            remainingTime +=10;
         }
 
         private void ResetRound()
@@ -144,6 +144,12 @@ namespace Trivia.ViewModel
             TimeSpan vibrationLength = TimeSpan.FromMilliseconds(secondsToVibrate);
 
             Vibration.Default.Vibrate(vibrationLength);
+        }
+
+        [RelayCommand]
+        async Task GameModeSelected()
+        {
+            await Shell.Current.GoToAsync($"{nameof(MainPage)}");
         }
 
     }

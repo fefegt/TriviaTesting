@@ -4,9 +4,9 @@ namespace Trivia;
 
 public partial class MenuPage : ContentPage
 {
-	public MenuPage(MenuPageViewModel viewModel)
+	public MenuPage(TriviaViewModel triviaViewModel)
 	{
 		InitializeComponent();
-		BindingContext = viewModel;
+		BindingContext = triviaViewModel;
 	}
 }

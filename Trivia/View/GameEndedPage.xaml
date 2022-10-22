@@ -6,7 +6,7 @@
              Title=""
              >
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+        <BackButtonBehavior IsVisible="True" IsEnabled="True"/>
     </Shell.BackButtonBehavior>
 
     <Grid ColumnDefinitions="*, *" RowDefinitions="40, 300, 150, 40">

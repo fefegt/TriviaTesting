@@ -3,20 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:Trivia.Model"
              xmlns:viewmodel="clr-namespace:Trivia.ViewModel"
+             x:DataType="viewmodel:TriviaViewModel"
              x:Class="Trivia.MenuPage"
              Title=""
              >
 
-    <Grid ColumnDefinitions="*, *, *" RowDefinitions="50, 100, 400, 30">
+    <Grid ColumnDefinitions="*, *, *" RowDefinitions="70, 100, 400, 30">
 
-        <StackLayout Orientation="Horizontal" Spacing="10">
-            <Frame BackgroundColor="Grey" BorderColor="Black" Grid.Column="0" WidthRequest="125">
-                <Grid ColumnDefinitions="10, Auto">
-                    <Image Source="heart_logo_adobe_express.svg" WidthRequest="100" HeightRequest="100" Grid.Column="0"/>
-                    <Label Text="{Binding currentPlayer.lifesleft}" FontSize="Small" BackgroundColor="White" Grid.Column="1"/>
+        <StackLayout Orientation="Horizontal" Spacing="5">
+            <Frame BackgroundColor="Grey" BorderColor="Black" WidthRequest="125">
+                <Grid ColumnDefinitions="*, *">
+                    <Image Source="heart_logo.png" WidthRequest="40" HeightRequest="40"/>
+                    <Label Text="{Binding CurrentPlayer.Lifesleft}" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
                 </Grid>
             </Frame>
-            
+
 
             <Frame BackgroundColor="Grey" BorderColor="Black" Grid.Column="1" WidthRequest="125">
 
@@ -27,8 +28,6 @@
             </Frame>
         </StackLayout>
 
-        <Label Text="{Binding currentPlayer.lifesleft}" TextColor="DarkRed" Grid.Column="0" HorizontalOptions="End"/>
-
         <Label Text="Welcome to Trivia!" Grid.Column="1" Grid.Row="1" HorizontalTextAlignment="Center" VerticalOptions="End"/>
 
 
@@ -37,7 +36,7 @@
             <Frame HeightRequest="150" BorderColor="Black" BackgroundColor="Transparent">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer CommandParameter="{Binding .}" NumberOfTapsRequired="1"
-                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MenuPageViewModel}}, Path=GameModeSelectedCommand}"/>
+                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TriviaViewModel}}, Path=GameModeSelectedCommand}"/>
                 </Frame.GestureRecognizers>
 
                 <Grid BackgroundColor="SaddleBrown">
@@ -49,6 +48,12 @@
             </Frame>
         </StackLayout>
 
+        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" BackgroundColor="DarkGreen" VerticalOptions="End" HeightRequest="50">
+            <Grid ColumnDefinitions="*, *, *, *, *">
+                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" HeightRequest="25" WidthRequest="25" HorizontalOptions="End"/>
+                <ImageButton/>
+            </Grid>
+        </StackLayout>
     </Grid>
     
 </ContentPage>

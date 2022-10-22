@@ -65,6 +65,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\dislike.png" />
+	  <None Remove="Resources\Images\heart_logo.png" />
+	  <None Remove="Resources\Images\home_icon.png" />
 	  <None Remove="Resources\Images\like.png" />
 	  <None Remove="Resources\Images\monkeysbetting2.webp" />
 	  <None Remove="Resources\Images\monos_apostando.jpg" />
