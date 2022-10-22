@@ -8,38 +8,43 @@
              xmlns:local="clr-namespace:Trivia.Services.Converters"
              Title="{Binding Title}"
              Background="{StaticResource Key=Gray100}"
-             x:Class="Trivia.MainPage">
+             x:Class="Trivia.MainPage"
+             >
+    
+    
     <ContentPage.Resources>
         <local:StateMovieStyleConverter x:Key="colorMovieConverter" />
     </ContentPage.Resources>
 
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="40,70,40,50,*,100" ColumnSpacing="5" BackgroundColor="White">
-        <Label Text="ACIERTOS" HorizontalOptions="Center"></Label>
-
-        <Label Text="{Binding CurrentPlayer.Points}" Grid.Row="1" FontSize="Title" FontAttributes="None" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Points}"></Label>
         
-        <Label Text="TIEMPO" Grid.Column="1" HorizontalTextAlignment="Center" HorizontalOptions="Center" Background="White" BackgroundColor="Blue"></Label>
+        <Label Text="ACIERTOS" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Black}}"></Label>
+        <Label Text="{Binding CurrentPlayer.Points}" Grid.Row="1" FontSize="Title" FontAttributes="None" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Points}"></Label>
 
+        <Label Text="TIEMPO" Grid.Column="1" HorizontalTextAlignment="Center" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Black}}"></Label>
         <Label x:Name="lblRemainingTime" Text="{Binding RemainingTime}"  Grid.Row="1" Grid.Column="1" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Time}"></Label>
-            
-        <Label Text="VIDAS" Grid.Column="3" HorizontalOptions="Center"></Label>
 
+        <Label Text="VIDAS" Grid.Column="3" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Black}}"></Label>
         <Label Text="{Binding CurrentPlayer.Lifesleft}" Grid.Column="3" Grid.Row="1" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Key=Lives}"></Label>
 
         <Label Text="ELIJA UNA OPCION" Grid.Row="2" Grid.ColumnSpan="4" BackgroundColor="#C4A484" TextColor="White" 
             FontSize="Title" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" Padding="0"></Label>
 
-        <Label  Text="{Binding WinnerMovie.Emoji}" FontSize="Medium" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1"></Label>
+        <Image Source="{Binding WinnerMovie.image}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1"></Image>
 
         <CollectionView  Grid.ColumnSpan="3" Grid.Row="4" VerticalOptions="CenterAndExpand" ItemsSource="{Binding Movies}" SelectionMode="None" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Movie">
                                 <Frame Margin="25" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding State, Converter={StaticResource colorMovieConverter}}" BorderColor="{StaticResource Key=Primary}">
                                     <Frame.GestureRecognizers>
-                                         
-                                        <TapGestureRecognizer CommandParameter="{Binding .}" NumberOfTapsRequired="1"
-                                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TriviaViewModel}}, Path=PickAnswerCommand}"/>
-                                    </Frame.GestureRecognizers>
+
+                            <TapGestureRecognizer CommandParameter="{Binding .}" NumberOfTapsRequired="1"
+                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TriviaViewModel}}, Path=PickAnswerCommand}"/>
+                        </Frame.GestureRecognizers>
                                     
                                     <Grid ColumnDefinitions="100,*" >
 
@@ -54,13 +59,5 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
-        <Button Text="Start Game" FontAttributes="Bold" IsVisible="false" x:Name="StartGameButton" Grid.Row="5" Grid.ColumnSpan="3" BackgroundColor="#C4A484" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}" HeightRequest="105" WidthRequest="500" VerticalOptions="EndAndExpand"></Button>
-                            <ActivityIndicator IsVisible="{Binding IsBusy}" 
-                                               IsRunning="{Binding IsBusy}"
-                                               Grid.ColumnSpan="2"
-                                               Grid.RowSpan="5"
-                                               HorizontalOptions="FillAndExpand"
-                                               VerticalOptions="CenterAndExpand"
-                                               />
     </Grid>
 </ContentPage>

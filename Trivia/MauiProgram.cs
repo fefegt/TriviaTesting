@@ -1,4 +1,6 @@
-﻿using Trivia.Services;
+﻿using CommunityToolkit.Maui;
+using Trivia.Services;
+using Trivia.View;
 using Trivia.ViewModel;
 
 
@@ -11,6 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -19,11 +22,14 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<MovieService>();
 
-		builder.Services.AddSingleton<TriviaViewModel>();
+		builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<TriviaViewModel>();
 
-		builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<GameEndedPage>();
+		builder.Services.AddTransient<LoadingScreenPage>();
 
-
+		builder.Services.AddSingleton<MenuPage>();
+		builder.Services.AddSingleton<MenuPageViewModel>();
 
         return builder.Build();
 	}

@@ -425,4 +425,8 @@
         <Setter Property="Grid.Column" Value="1"/>
     </Style>
 
+    <Style TargetType="Label" x:Key="DarkThemeLetters">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark=White}"/>
+    </Style>
+
 </ResourceDictionary>
